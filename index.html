@@ -7,85 +7,106 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
 <style>
-/* Layout: página de servicio de una columna, cabecera naranja Gextiona, tabla de importes y bloques de servicio, FAQ desplegable */
+/* Layout: una columna compacta; importes en bloques, servicios y pasos en tarjetas-botón que abren el texto completo en una ventana; FAQ plegada */
 :root{
   --bg:#fbf8f6; --surface:#ffffff; --fg:#22262e; --muted:#5f6670; --line:#ecdcd1;
-  --accent:#e85d17; --accent-ink:#ffffff; --navy:#1d3f6e; --tint:#fff0e6;
+  --accent:#e85d17; --accent-ink:#ffffff; --navy:#1d3f6e; --tint:#fff0e6; --shade:rgba(20,24,32,.55);
   --display:"Poppins",system-ui,sans-serif; --body:"Source Sans 3",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#15171c; --surface:#1d2027; --fg:#eceef2; --muted:#a3a9b3; --line:#343840;
-  --accent:#ff8040; --accent-ink:#1a0f08; --navy:#8fb4e8; --tint:#2a1e17; color-scheme:dark } }
+  --accent:#ff8040; --accent-ink:#1a0f08; --navy:#8fb4e8; --tint:#2a1e17; --shade:rgba(0,0,0,.65); color-scheme:dark } }
 :root[data-theme="dark"]{
   --bg:#15171c; --surface:#1d2027; --fg:#eceef2; --muted:#a3a9b3; --line:#343840;
-  --accent:#ff8040; --accent-ink:#1a0f08; --navy:#8fb4e8; --tint:#2a1e17; color-scheme:dark }
+  --accent:#ff8040; --accent-ink:#1a0f08; --navy:#8fb4e8; --tint:#2a1e17; --shade:rgba(0,0,0,.65); color-scheme:dark }
 *{box-sizing:border-box}
 html,body{margin:0}
 img{max-width:100%}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
-.wrap{max-width:860px;margin:0 auto;padding-inline:20px}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px}
 header.brand{background:var(--accent);color:var(--accent-ink)}
 header.brand .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:14px;flex-wrap:wrap}
 .logo{font-family:var(--display);font-weight:600;font-size:26px;letter-spacing:.3px}
 .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
-.hero{padding-block:44px 20px}
-.hero .eyebrow{color:var(--navy)}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.2}
-h1{font-size:clamp(28px,5vw,42px);margin:10px 0 18px;font-weight:700}
+h1{font-size:clamp(26px,4.6vw,40px);margin:0 0 12px;font-weight:700}
 h1 em{font-style:normal;color:var(--accent)}
-.question{font-family:var(--display);font-weight:600;font-size:clamp(20px,3vw,24px);color:var(--accent);margin:0 0 14px;text-wrap:balance;line-height:1.3}
-.lead{font-size:18px;color:var(--muted);max-width:66ch;margin:0 0 10px}
-.lead strong{color:var(--fg)}
-.btn:focus-visible,summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
-section{padding-block:30px}
-h2{font-size:26px;margin:0 0 16px;font-weight:600}
-.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start}
-.grid2>*{min-width:0}
-@media (max-width:700px){.grid2{grid-template-columns:1fr}}
-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-td{padding:11px 4px;border-bottom:1px solid var(--line)}
-td.n{text-align:right;font-family:var(--display);font-weight:600;color:var(--accent);white-space:nowrap}
-.note{font-size:14px;color:var(--muted);margin-top:8px}
-.deadline{background:var(--tint);border-radius:12px;padding:22px 22px 20px}
-.deadline .eyebrow{color:var(--accent)}
-.deadline .date{display:block;font-family:var(--display);font-weight:700;font-size:40px;line-height:1.05;color:var(--fg);margin:8px 0 6px}
-.deadline p{margin:0;color:var(--muted);font-size:15.5px}
-.about{display:grid;grid-template-columns:auto auto 1fr;gap:18px 28px;align-items:center;border-block:1px solid var(--line);padding-block:24px}
-.about .stat b{display:block;font-family:var(--display);font-size:34px;color:var(--accent);line-height:1}
-.about .stat span{font-size:14px;color:var(--muted)}
-.about p{margin:0;min-width:0}
-@media (max-width:700px){.about{grid-template-columns:1fr 1fr}.about p{grid-column:1/-1}}
-.services{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.services li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
-.services li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:9px}
-.services b{font-weight:700}
-.services small{display:block;color:var(--muted);font-size:15.5px;margin-top:4px}
-.alert{background:var(--tint);border-radius:10px;padding:18px 20px;margin-top:26px}
+h2{font-size:23px;margin:0 0 14px;font-weight:600}
+section{padding-block:22px}
+.hero{padding-block:34px 8px}
+.question{font-family:var(--display);font-weight:600;font-size:clamp(18px,2.6vw,22px);color:var(--accent);margin:0 0 10px;line-height:1.3;text-wrap:balance}
+.lead{color:var(--muted);max-width:68ch;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{display:inline-flex;align-items:baseline;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px}
+.chip b{font-family:var(--display);color:var(--accent)}
+.chip.hot{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.hot b{color:var(--accent-ink)}
+
+.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.amounts>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 14px 12px;min-width:0}
+.amounts b{display:block;font-family:var(--display);font-weight:700;font-size:26px;color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums}
+.amounts span{font-size:14.5px;color:var(--muted)}
+.amounts .top{background:var(--tint);border-color:transparent}
+@media (max-width:720px){.amounts{grid-template-columns:1fr 1fr}}
+.note{font-size:14px;color:var(--muted);margin:8px 0 0}
+
+.about{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;background:var(--navy);color:var(--bg);border-radius:14px;padding:18px 22px}
+.about .stat b{font-family:var(--display);font-size:30px;line-height:1;margin-right:6px}
+.about .stat{font-size:14.5px;opacity:.95}
+.about p{flex:1 1 320px;margin:0;font-size:15.5px;opacity:.92;min-width:0}
+
+.hint{font-size:14px;color:var(--muted);margin:-6px 0 14px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.tile{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-height:96px;transition:border-color .15s,transform .15s,box-shadow .15s}
+.tile:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px -10px var(--shade)}
+.tile:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+.tile .t{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.25;color:var(--fg)}
+.tile .more{margin-top:auto;font-size:13.5px;font-weight:700;color:var(--accent)}
+.tile .n{font-family:var(--display);font-weight:600;width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--bg);display:grid;place-items:center;font-size:14px}
+.services-grid{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){.services-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.services-grid{grid-template-columns:1fr}}
+.steps{grid-template-columns:repeat(3,1fr)}
+@media (max-width:640px){.steps{grid-template-columns:1fr}}
+.tile .full{display:none}
+
+.alert{background:var(--tint);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:16px}
 .alert strong{color:var(--accent)}
-.steps{display:grid;gap:0;border-top:1px solid var(--line)}
-.step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
-.step .k{font-family:var(--display);font-weight:600;width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--bg);display:grid;place-items:center}
-.step h3{margin:2px 0 4px;font-size:18px}
-.step p{margin:0;color:var(--muted)}
-.annex{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.annex span{font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--navy)}
+
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;padding:16px 36px 16px 0;font-weight:700;font-size:18px;position:relative}
+.faq summary{cursor:pointer;list-style:none;padding:13px 36px 13px 0;font-weight:700;font-size:17px;position:relative}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:6px;top:12px;font-family:var(--display);font-size:24px;color:var(--accent)}
+.faq summary::after{content:"+";position:absolute;right:6px;top:8px;font-family:var(--display);font-size:24px;color:var(--accent)}
 .faq details[open] summary::after{content:"–"}
-.faq .a{padding:0 0 18px;color:var(--muted);max-width:68ch}
-.faq .a p{margin:0 0 8px}
-.final{background:var(--navy);color:var(--bg);border-radius:14px;padding:32px 28px;margin-block:20px 40px}
-.final h2{color:var(--bg);margin-bottom:8px}
-.final p{margin:0 0 20px;opacity:.9}
-.final .cheer{font-family:var(--display);font-weight:600;font-size:20px;margin:22px 0 0;opacity:1}
-.contact{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.faq summary:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.faq .a{padding:0 0 14px;color:var(--muted);max-width:68ch}
+.faq .a p{margin:0}
+.faq .a a{color:var(--accent);font-weight:700}
+
+.final{background:var(--navy);color:var(--bg);border-radius:14px;padding:26px 24px;margin-block:18px 30px}
+.final h2{color:var(--bg);margin-bottom:6px}
+.final p{margin:0 0 16px;opacity:.92}
+.final .cheer{font-family:var(--display);font-weight:600;font-size:19px;margin:16px 0 0;opacity:1}
+.contact{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .contact li{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
 .contact span{font-size:12.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;opacity:.75;min-width:90px}
 .contact a{color:var(--bg);font-family:var(--display);font-weight:600;font-size:20px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .contact a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-footer{font-size:14px;color:var(--muted);padding-block:10px 40px}
+footer{font-size:14px;color:var(--muted);padding-block:0 36px}
+
+dialog{border:0;border-radius:16px;padding:0;max-width:min(620px,calc(100vw - 32px));width:100%;background:var(--surface);color:var(--fg);box-shadow:0 24px 60px -20px var(--shade)}
+dialog::backdrop{background:var(--shade)}
+.dlg-head{background:var(--accent);color:var(--accent-ink);padding:18px 22px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.dlg-head h3{margin:0;font-size:21px}
+.dlg-close{all:unset;cursor:pointer;font-family:var(--display);font-size:26px;line-height:1;padding:0 4px}
+.dlg-close:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+.dlg-body{padding:22px;font-size:19px;line-height:1.6}
+.dlg-body p{margin:0 0 10px}
+.dlg-body ul{margin:0;padding-left:20px}
+.dlg-body li{margin:4px 0}
+.dlg-foot{padding:0 22px 22px;font-size:15px;color:var(--muted)}
+.dlg-foot a{color:var(--accent);font-weight:700}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -93,73 +114,83 @@ footer{font-size:14px;color:var(--muted);padding-block:10px 40px}
 
 <main class="wrap">
   <div class="hero">
-    <span class="eyebrow">Diputación de Sevilla · 2ª convocatoria 2026</span>
     <h1>Ayudas para contratar <em>asistencias técnicas municipales</em> 2026</h1>
     <p class="question">¿Hay algún plan o proyecto que tu ayuntamiento quiera impulsar?</p>
     <p class="lead">La Diputación de Sevilla ha publicado (BOP nº 189, de 29 de septiembre de 2026) la segunda convocatoria de subvenciones para que los municipios y Entidades Locales contraten asistencia técnica externa.</p>
-    <p class="lead">La ayuda puede cubrir <strong>hasta el 100 % del presupuesto</strong> de cada actuación y se cobra <strong>por adelantado</strong>, con la resolución de concesión.</p>
+    <div class="chips">
+      <span class="chip hot">Plazo <b>hasta el 14 de octubre</b></span>
+      <span class="chip">Cubre <b>hasta el 100 %</b> del presupuesto</span>
+      <span class="chip">Se cobra <b>por adelantado</b></span>
+    </div>
   </div>
 
-  <section class="grid2">
-    <div>
-      <h2>¿Cuánto puede recibir tu entidad?</h2>
-      <table>
-        <tr><td>Entidades Locales Autónomas (ELA)</td><td class="n">75.000 €</td></tr>
-        <tr><td>Municipios de menos de 10.000 hab.</td><td class="n">75.000 €</td></tr>
-        <tr><td>De 10.000 a 19.999 hab.</td><td class="n">115.000 €</td></tr>
-        <tr><td>20.000 hab. o más</td><td class="n">145.000 €</td></tr>
-      </table>
-      <p class="note">Importe máximo para el total de actuaciones solicitadas. Excluida Sevilla capital.</p>
+  <section>
+    <h2>¿Cuánto puede recibir tu entidad?</h2>
+    <div class="amounts">
+      <div><b>75.000 €</b><span>Entidades Locales Autónomas (ELA)</span></div>
+      <div><b>75.000 €</b><span>Municipios de menos de 10.000 hab.</span></div>
+      <div><b>115.000 €</b><span>De 10.000 a 19.999 hab.</span></div>
+      <div class="top"><b>145.000 €</b><span>20.000 hab. o más</span></div>
     </div>
-    <div class="deadline">
-      <span class="eyebrow">Atención</span>
-      <p style="margin-top:8px">El plazo para presentarla es</p>
-      <span class="date">hasta el 14 de octubre</span>
-    </div>
+    <p class="note">Importe máximo para el total de actuaciones solicitadas. Excluida Sevilla capital.</p>
   </section>
 
   <div class="about">
-    <div class="stat"><b>+100</b><span>Administraciones Públicas clientes</span></div>
-    <div class="stat"><b>+15</b><span>años de experiencia</span></div>
-    <p>Desde Gextiona, consultora con más de 100 Administraciones Públicas como clientes, con más de 15 años de experiencia profesional, nos ponemos a su disposición inmediata para facilitarle el presupuesto que requiere esta convocatoria.</p>
+    <div class="stat"><b>+100</b>Administraciones Públicas clientes</div>
+    <div class="stat"><b>+15</b>años de experiencia</div>
+    <p>Desde Gextiona nos ponemos a su disposición inmediata para facilitarle el presupuesto que requiere esta convocatoria.</p>
   </div>
 
   <section>
     <h2>¿Qué servicios prestamos y puede financiar la convocatoria?</h2>
-    <ul class="services">
-      <li><div><b>Elaboración de Relación de Puestos de Trabajo (RPT) y Valoración de Puestos de Trabajo (VPT).</b></div></li>
-      <li><div><b>Análisis y Negociación de Convenios Colectivos</b>, asesoramiento en normativa laboral.</div></li>
-      <li><div><b>Elaboración de Pliegos de Contratación (PCAP y PPT) con complejidad.</b><small>Incluimos acompañamiento técnico en la tramitación del expediente, emisión de memorias justificativas, informe de insuficiencia de medios, acompañamiento técnico para la publicación en Plataforma y contestación a preguntas de licitadores, asistencia en las Mesas de Contratación, hasta la adjudicación del contrato.</small></div></li>
-      <li><div><b>Estudios de Viabilidad y Estudios Económicos de Costes.</b></div></li>
-      <li><div><b>Asistencia técnica en materia de gestión financiera</b><small>Control financiero y asistencia técnica integral para la elaboración de Presupuesto y Rendición de Cuentas, asesoramiento y apoyo a la tesorería e intervención, en cuanto al control financiero.</small></div></li>
-      <li><div><b>Preparación, tramitación e informes para la aprobación y modificación de Ordenanzas fiscales y Ordenanzas Reguladoras de precios públicos.</b></div></li>
-      <li><div><b>Elaboración de Plan de Medidas Antifraude.</b></div></li>
-      <li><div><b>Otras asistencias de competencia municipal.</b></div></li>
-    </ul>
+    <p class="hint">Pulsa en cada servicio para ver el detalle.</p>
+    <div class="tiles services-grid">
+      <button class="tile" type="button"><span class="t">RPT y VPT</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Relación y Valoración de Puestos de Trabajo"><p>Elaboración de Relación de Puestos de Trabajo (RPT) y Valoración de Puestos de Trabajo (VPT).</p></div></button>
+      <button class="tile" type="button"><span class="t">Convenios colectivos</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Convenios colectivos"><p>Análisis y Negociación de Convenios Colectivos, asesoramiento en normativa laboral.</p></div></button>
+      <button class="tile" type="button"><span class="t">Pliegos de contratación</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Pliegos de contratación (PCAP y PPT)"><p>Elaboración de Pliegos de Contratación (PCAP y PPT) con complejidad. Incluimos:</p><ul><li>Acompañamiento técnico en la tramitación del expediente.</li><li>Emisión de memorias justificativas.</li><li>Informe de insuficiencia de medios.</li><li>Acompañamiento técnico para la publicación en Plataforma y contestación a preguntas de licitadores.</li><li>Asistencia en las Mesas de Contratación, hasta la adjudicación del contrato.</li></ul></div></button>
+      <button class="tile" type="button"><span class="t">Estudios de viabilidad y de costes</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Estudios de viabilidad y de costes"><p>Estudios de Viabilidad y Estudios Económicos de Costes.</p></div></button>
+      <button class="tile" type="button"><span class="t">Dimensionamiento y viabilidad de servicios públicos</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Dimensionamiento y viabilidad de servicios públicos"><p>Estudio de Dimensionamiento Técnico y Viabilidad Económica de los Servicios Públicos:</p><ul><li>Limpieza urbana.</li><li>Recogida de residuos.</li><li>Mantenimiento de zonas verdes.</li><li>Limpieza de dependencias municipales.</li><li>Concesiones, entre otros.</li></ul><p style="margin-top:10px">Incluye la puesta en marcha y el control de la prestación de los servicios.</p></div></button>
+      <button class="tile" type="button"><span class="t">Gestión financiera</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Gestión financiera"><p>Asistencia técnica en materia de gestión financiera:</p><ul><li>Control financiero.</li><li>Asistencia técnica integral para la elaboración de Presupuesto y Rendición de Cuentas.</li><li>Asesoramiento y apoyo a la tesorería e intervención, en cuanto al control financiero.</li></ul></div></button>
+      <button class="tile" type="button"><span class="t">Ordenanzas fiscales y precios públicos</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Ordenanzas fiscales y precios públicos"><p>Preparación, tramitación e informes para la aprobación y modificación de Ordenanzas fiscales y Ordenanzas Reguladoras de precios públicos.</p></div></button>
+      <button class="tile" type="button"><span class="t">Plan de Medidas Antifraude</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Plan de Medidas Antifraude"><p>Elaboración de Plan de Medidas Antifraude.</p></div></button>
+      <button class="tile" type="button"><span class="t">Otras asistencias</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="Otras asistencias"><p>Otras asistencias de competencia municipal.</p></div></button>
+    </div>
     <div class="alert"><strong>Plazo:</strong> hasta el día <strong>14 de octubre</strong>. Las solicitudes se tramitan por orden de entrada y los fondos (9,98 millones de euros) son limitados.</div>
   </section>
 
   <section>
     <h2>¿Qué hacemos por tu ayuntamiento?</h2>
-    <div class="steps">
-      <div class="step"><span class="k">1</span><div><h3>Revisamos</h3><p>Qué actuaciones encajan y cómo distribuir el importe máximo.</p></div></div>
-      <div class="step"><span class="k">2</span><div><h3>Apoyamos para presentar la solicitud</h3><p>Anexo I, memorias (Anexo II) y presupuestos (Anexo III).</p><div class="annex"><span>Anexo I</span><span>Anexo II</span><span>Anexo III</span></div></div></div>
-      <div class="step"><span class="k">3</span><div><h3>Apoyamos la contratación</h3><p>Conforme a la LCSP.</p></div></div>
+    <div class="tiles steps">
+      <button class="tile" type="button"><span class="n">1</span><span class="t">Revisamos</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="1 · Revisamos"><p>Qué actuaciones encajan y cómo distribuir el importe máximo.</p></div></button>
+      <button class="tile" type="button"><span class="n">2</span><span class="t">Apoyamos la solicitud</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="2 · Apoyamos para presentar la solicitud"><ul><li>Anexo I · Solicitud</li><li>Anexo II · Memorias</li><li>Anexo III · Presupuestos</li></ul></div></button>
+      <button class="tile" type="button"><span class="n">3</span><span class="t">Apoyamos la contratación</span><span class="more">Ver detalle →</span>
+        <div class="full" data-title="3 · Apoyamos la contratación"><p>Conforme a la Ley de Contratos del Sector Público (LCSP).</p></div></button>
     </div>
   </section>
 
   <section class="faq" id="faq">
     <h2>Preguntas frecuentes</h2>
-    <details open><summary>¿Quién puede solicitarla?</summary><div class="a"><p>Todos los municipios de la provincia de Sevilla, excepto la capital, y las Entidades Locales Autónomas. Tienen que estar al corriente con Hacienda, la Seguridad Social y los reintegros a la Diputación.</p></div></details>
+    <details><summary>¿Quién puede solicitarla?</summary><div class="a"><p>Todos los municipios de la provincia de Sevilla, excepto la capital, y las Entidades Locales Autónomas. Tienen que estar al corriente con Hacienda, la Seguridad Social y los reintegros a la Diputación.</p></div></details>
     <details><summary>¿Hay que competir con otros ayuntamientos?</summary><div class="a"><p>No. Es concurrencia no competitiva: no hay puntuación. Las solicitudes completas se atienden por orden de entrada hasta agotar los 9.985.000 €. Por eso conviene presentar pronto y sin errores.</p></div></details>
     <details><summary>¿Cuál es el plazo para presentarla?</summary><div class="a"><p>La fecha límite es hasta el 14 de octubre. Se presenta por SIDERAL o SIR, con firma electrónica de la alcaldía.</p></div></details>
     <details><summary>¿Puedo pedir varias actuaciones?</summary><div class="a"><p>Sí. Se presenta un único Anexo I y una memoria y un presupuesto por cada actuación. La suma no puede superar el tope según la población. Después no se puede pasar dinero de una actuación a otra.</p></div></details>
     <details><summary>¿Cuándo cobra el ayuntamiento?</summary><div class="a"><p>El 100 % se paga por adelantado con la resolución definitiva, tras presentar los certificados de estar al corriente con la AEAT, la TGSS y la Diputación. La convocatoria debe resolverse antes del 31 de diciembre de 2026.</p></div></details>
     <details><summary>¿Cuánto tiempo hay para hacer el trabajo y justificarlo?</summary><div class="a"><p>24 meses de ejecución desde el día siguiente a la notificación de la concesión, ampliables si se pide a tiempo y de forma justificada. Después hay 3 meses para justificar.</p></div></details>
-    <details><summary>¿Hay que licitar la asistencia técnica?</summary><div class="a"><p> Solo si se supera el importe del contrato menor, en la justificación hay que aportar las ofertas recibidas y explicar la elección si no fue la más económica. No se puede fraccionar el contrato.</p></div></details>
+    <details><summary>¿Hay que licitar la asistencia técnica?</summary><div class="a"><p>Solo si se supera el importe del contrato menor, en la justificación hay que aportar las ofertas recibidas y explicar la elección si no fue la más económica. No se puede fraccionar el contrato.</p></div></details>
     <details><summary>¿Y si el trabajo cuesta menos de lo previsto?</summary><div class="a"><p>Se presenta el Anexo V aceptando la minoración y se devuelve la diferencia con sus intereses. Te ayudamos a calcularlo y tramitarlo.</p></div></details>
     <details><summary>¿Es compatible con otras ayudas?</summary><div class="a"><p>Sí, con ayudas de otras administraciones, siempre que la suma no supere el coste. No es compatible con otros planes o convocatorias de la propia Diputación de Sevilla para la misma actuación.</p></div></details>
-    <details><summary>¿Qué necesitáis de nosotros para empezar?</summary><div class="a"><p>Contactarnos al Email </span><a href="mailto:infosevilla@gextiona.com">infosevilla@gextiona.com</a> o a los teléfonos de contacto </span><a href="tel:+34601614602">601 614 602</a> ó <a href="tel:+34646901921">646 901 921</a>.</p></div></details>
+    <details><summary>¿Qué necesitáis de nosotros para empezar?</summary><div class="a"><p>Contactarnos al email <a href="mailto:infosevilla@gextiona.com">infosevilla@gextiona.com</a> o a los teléfonos de contacto <a href="tel:+34601614602">601 614 602</a> ó <a href="tel:+34646901921">646 901 921</a>.</p></div></details>
     <details><summary>¿Puede Gextiona hacer también la asistencia técnica?</summary><div class="a"><p>Sí, en las materias en las que trabajamos: estudios de viabilidad, de costes, económico-financieros, inventarios, planes antifraude o pliegos, entre otros. La adjudicación siempre la decide el ayuntamiento siguiendo su procedimiento de contratación.</p></div></details>
   </section>
 
@@ -175,5 +206,28 @@ footer{font-size:14px;color:var(--muted);padding-block:10px 40px}
 
   <footer>Copyright (C) Gextiona APV Consultores SL</footer>
 </main>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="dlg-head"><h3 id="dlg-title"></h3><button class="dlg-close" type="button" aria-label="Cerrar">×</button></div>
+  <div class="dlg-body" id="dlg-body"></div>
+  <div class="dlg-foot">¿Te interesa? Escríbenos a <a href="mailto:infosevilla@gextiona.com">infosevilla@gextiona.com</a> o llama al 601 614 602 / 646 901 921.</div>
+</dialog>
+
+<script>
+(function(){
+  var dlg=document.getElementById('dlg'), title=document.getElementById('dlg-title'), body=document.getElementById('dlg-body');
+  function open(full){
+    title.textContent=full.getAttribute('data-title');
+    body.innerHTML=full.innerHTML;
+    if(dlg.showModal){dlg.showModal();}else{dlg.setAttribute('open','');}
+  }
+  function close(){ if(dlg.close){dlg.close();}else{dlg.removeAttribute('open');} }
+  document.querySelectorAll('.tile').forEach(function(t){
+    t.addEventListener('click',function(){ open(t.querySelector('.full')); });
+  });
+  dlg.querySelector('.dlg-close').addEventListener('click',close);
+  dlg.addEventListener('click',function(e){ if(e.target===dlg) close(); });
+})();
+</script>
 </body>
 </html>
